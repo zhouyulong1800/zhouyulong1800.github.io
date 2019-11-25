@@ -2,6 +2,7 @@
 <body>
 <h1>我叫<span id="myname"></span></h1>
     我的学号是<span id="mynumber"></span>
+    <a href="login.html">登录</a>
     <br>
     <input type="button" value="下一个" id="app">
 </br>
@@ -10,12 +11,21 @@
     <script src="jquery-3.4.1.js"></script>
     <script>
         $(function(){
-            $.get("./data.json",function(result){
+            $.ajax({
+                type:"POST"
+                ,contentType:'application/json'
+                ,url:"http://10.30.201.92:8585/userinfo"
+                ,xhrFields:{withCredentials:true}
+                ,success:function(result){
                 $("#myname").text(result.myname);
                 $("#mynumber").text(result.mynumber);
-            })
+            }})
+            // $.post("http://127.0.0.1:8585/userinfo",function(result){
+            //     $("#myname").text(result.myname);
+            //     $("#mynumber").text(result.mynumber);
+            // })
             $("#app").click(function(){
-                $.get("./data1.json",function(result){
+                $.post("http://127.0.0.1:8585/userinfo",function(result){
                 $("#myname").text(result.mynumber);
                 $("#mynumber").text(result.myname);
             })
