@@ -3,6 +3,7 @@
 <h1>我叫<span id="myname"></span></h1>
     我的学号是<span id="mynumber"></span>
     <a href="login.html">登录</a>
+    <a id="out" href="#">注销</a>
     <br>
     <input type="button" value="下一个" id="app">
 </br>
@@ -10,6 +11,7 @@
     <img id="logo" src="timg.jpg" width="420px" height="300px" src="timg.jpg" style="border-radius:10px 20px 40px 88px">
     <script src="jquery-3.4.1.js"></script>
     <script>
+        
         $(function(){
             $.ajax({
                 type:"POST"
@@ -29,6 +31,16 @@
                 $("#myname").text(result.mynumber);
                 $("#mynumber").text(result.myname);
             })
+            });
+            $("#out").click(function(){
+                $.ajax({
+                    type:"GET"
+                    ,xhrFields:{withCredentials:true}
+                    ,url:"http://10.30.201.92:8585/logout"
+                    , success: function (result) {
+                            location.href = 'index.html';
+                    }
+                })
             })
         })
     </script>

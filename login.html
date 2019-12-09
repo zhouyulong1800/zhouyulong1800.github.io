@@ -21,7 +21,8 @@
                 $.ajax({
                     type: "POST"
                     , contentType: 'application/json'
-                    , url: "http://127.0.0.1:8585/login"
+                    ,xhrFields:{withCredentials:true}
+                    , url: "http://10.30.201.92:8585/login"
                     , data: JSON.stringify({ "name":  $("#yhm").val(), 
                             "password": $("#mm").val() })
                     , success: function (result) {
